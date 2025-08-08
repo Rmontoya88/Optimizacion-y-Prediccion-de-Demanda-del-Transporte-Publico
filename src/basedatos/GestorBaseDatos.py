@@ -1,0 +1,2 @@
+class GestorBaseDatos:
+    pass
