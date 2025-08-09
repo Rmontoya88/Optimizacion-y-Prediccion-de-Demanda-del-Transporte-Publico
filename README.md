@@ -46,11 +46,6 @@ Incluye gráficos de tendencias, patrones estacionales, mapas de calor y anális
 
 **Variables de entrada:**
 
-- Fecha y hora
-- Estación
-- Día de la semana
-- Feriado (sí/no)
-- Historial de demanda
 
 **Variable objetivo:**
 
@@ -68,15 +63,10 @@ Incluye gráficos de tendencias, patrones estacionales, mapas de calor y anális
 
 **Variables de entrada:**
 
-- Fecha y hora
-- Estación
-- Día de la semana
-- Feriado (sí/no)
-- Historial de ocupación
 
 **Variable objetivo:**
 
-- Nivel de ocupación (Bajo, Medio, Alto)
+
 
 ---
 
