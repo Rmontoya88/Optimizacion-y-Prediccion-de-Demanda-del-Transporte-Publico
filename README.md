@@ -17,10 +17,7 @@ Se realiza un análisis exploratorio de datos (EDA), visualización y desarrollo
 ## 🗂️ Fuentes de Datos
 
 - 📁 CSV (Estadísticas de INCOFER):  
-  [https://datos.incofer.go.cr/dataset/estadisticas-pasajeros](https://datos.incofer.go.cr/dataset/estadisticas-pasajeros)
-
-- 📅 API de feriados en Costa Rica:  
-  [https://api-feriados-cr.herokuapp.com/api/2025](https://api-feriados-cr.herokuapp.com/api/2025)
+  https://aresep.go.cr/datos-abiertos/#info_datos_estadisticatren
 
 - 🛢️ Base de datos PostgreSQL:  
   Contiene datos históricos por estación y validaciones cruzadas de ocupación.
