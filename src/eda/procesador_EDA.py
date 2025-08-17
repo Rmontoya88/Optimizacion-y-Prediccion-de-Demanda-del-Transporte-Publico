@@ -1,4 +1,6 @@
 import pandas as pd
+import os
+
 
 class ProcesadorEDA:
     def __init__(self, df):
@@ -56,7 +58,4 @@ class ProcesadorEDA:
         pct_nulos = (self.df.isnull().mean() * 100).round(2)
         print(pct_nulos)
         print("\n" + "=" * 50)
-
-
-
 
