@@ -33,6 +33,17 @@ class Tarifas_Historicas(Base):
     fechapublicacionlagaceta = Column(Date)
     expediente = Column(String)
 
+class Paradas_Servicio_Tren(Base):
+    __tablename__ = 'paradas_tren'
+    idparada = Column(Integer, primary_key=True)
+    nombre = Column(String)
+    provincia = Column(String)
+    canton = Column(String)
+    distrito = Column(String)
+    codigodta = Column(Integer)
+    x = Column(Integer)
+    y = Column(Integer)
+
 passw = quote_plus("LMtco26.08")
 engine = create_engine(f"postgresql+psycopg2://postgres:{passw}@localhost:5432/Incofer", echo=True)
 Base.metadata.drop_all(engine)
@@ -90,4 +101,31 @@ df_tarifas = df_tarifas.rename(columns ={
 })
 df_tarifas.to_sql("tarifas_historicas", engine, if_exists='append',index=False)
 df_test1 = pd.read_sql("Select * from tarifas_historicas",engine)
-print(df_test1)
+
+#Paradas
+df_paradas = pd.read_csv(r"C:\Users\Fabiola\Documents\CUC\BigData\Programacion II\Optimizacion-y-Prediccion-de-Demanda-del-Transporte-Publico\data\raw\Paradas_del_servicio_del_tren.csv",encoding="utf-8-sig")
+df_paradas.columns =(
+    df_paradas.columns
+    .str.strip()
+    .map(lambda x: unidecode(x))
+    .str.replace(" ","",regex=True)
+    .str.lower()
+)
+
+df_paradas = df_paradas.rename(columns ={
+    "idparada":"idparada",
+    "nombre":"nombre",
+    "provincia":"provincia",
+    "canton":"canton",
+    "distrito":"distrito",
+    "codigodta":"codigodta",
+    "x":"x",
+    "y":"y"
+})
+
+print(str(df_paradas))
+df_paradas.to_sql("paradas_tren", engine, if_exists='append',index=False)
+df_test2 = pd.read_sql("Select * from paradas_tren",engine)
+
+
+print(df_test2)
