@@ -44,6 +44,18 @@ class Paradas_Servicio_Tren(Base):
     x = Column(Integer)
     y = Column(Integer)
 
+class Pasajeros_Adultos_Mayores(Base):
+    __tablename__ = 'pasajeros_adultos_mayores'
+    id = Column(Integer, primary_key=True, autoincrement=True)
+    annio = Column(SmallInteger)
+    mes = Column(String)
+    totalpasajeros = Column(Integer)
+    heredia_sj = Column(Integer)
+    pavas_sanpedro = Column(Integer)
+    sj_belen = Column(Integer)
+    cartago_sj = Column(Integer)
+    alaj_her = Column(Integer)
+
 passw = quote_plus("LMtco26.08")
 engine = create_engine(f"postgresql+psycopg2://postgres:{passw}@localhost:5432/Incofer", echo=True)
 Base.metadata.drop_all(engine)
@@ -122,10 +134,29 @@ df_paradas = df_paradas.rename(columns ={
     "x":"x",
     "y":"y"
 })
-
-print(str(df_paradas))
 df_paradas.to_sql("paradas_tren", engine, if_exists='append',index=False)
 df_test2 = pd.read_sql("Select * from paradas_tren",engine)
 
+#Adultos Mayores
+df_adult_may = pd.read_csv(r"C:\Users\Fabiola\Documents\CUC\BigData\Programacion II\Optimizacion-y-Prediccion-de-Demanda-del-Transporte-Publico\data\raw\Pasajeros_adultos_mayores_movilizados.csv",encoding="utf-8-sig")
+df_adult_may.columns =(
+    df_adult_may.columns
+    .str.strip()
+    .map(lambda x: unidecode(x))
+    .str.replace(" ","",regex=True)
+    .str.lower()
+)
+df_adult_may = df_adult_may.rename(columns ={
+    "ano":"annio",
+    "mes":"mes",
+    "totalpasajeros":"totalpasajeros",
+    "heredia-sanjose":"heredia_sj",
+    "pavas-sanpedro":"pavas_sanpedro",
+    "sanjose-belen":"sj_belen",
+    "cartago-sanjose":"cartago_sj",
+    "alajuela-heredia":"alaj_her"
+})
 
-print(df_test2)
+df_adult_may.to_sql("pasajeros_adultos_mayores", engine, if_exists='append',index=False)
+df_test3 = pd.read_sql("Select * from pasajeros_adultos_mayores",engine)
+
