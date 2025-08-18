@@ -56,6 +56,35 @@ class Pasajeros_Adultos_Mayores(Base):
     cartago_sj = Column(Integer)
     alaj_her = Column(Integer)
 
+class Datos_ARESEP(Base):
+    __tablename__ = 'datos_aresep'
+    id = Column(Integer, primary_key=True, autoincrement=True)
+    codigoderuta = Column(String)
+    descripcionderuta = Column(String)
+    mes = Column(Integer)
+    annio = Column(Integer)
+    tipodeequipo = Column(String)
+    cantidadviajes = Column(DECIMAL(10,2))
+    cantidadlocomotoras = Column(DECIMAL(10,2))
+    cantidadvagones = Column(DECIMAL(10,2))
+    usomensual = Column(DECIMAL(10,2))
+    distanciarecorrida_km = Column(DECIMAL(10,2))
+    consumo_combustible = Column(DECIMAL(10,2))
+    cantidad_zapata_freno = Column(DECIMAL(10,2))
+    tipo_zapata_freno = Column(String)
+    lubricante_carter = Column(DECIMAL(10,2))
+    tipo_lubricante_carter = Column(String)
+    lubricante_compresor = Column(DECIMAL(10,2))
+    tipo_lubricante_compresor = Column(String)
+    lubricante_motor_diesel = Column(DECIMAL(10,2))
+    tipo_lubricante_motor_diesel = Column(String)
+    filtro_aire = Column(DECIMAL(10,2))
+    tipo_filtro_aire = Column(String)
+    filtro_primario = Column(DECIMAL(10,2))
+    tipo_filtro_primario = Column(String)
+    aceite_sist_hidraulico = Column(DECIMAL(10,2))
+    tipo_aceite_sist_hidraulico = Column(String)
+
 passw = quote_plus("LMtco26.08")
 engine = create_engine(f"postgresql+psycopg2://postgres:{passw}@localhost:5432/Incofer", echo=True)
 Base.metadata.drop_all(engine)
@@ -160,3 +189,44 @@ df_adult_may = df_adult_may.rename(columns ={
 df_adult_may.to_sql("pasajeros_adultos_mayores", engine, if_exists='append',index=False)
 df_test3 = pd.read_sql("Select * from pasajeros_adultos_mayores",engine)
 
+#Datos de ARESEP
+df_aresep = pd.read_csv(r"C:\Users\Fabiola\Documents\CUC\BigData\Programacion II\Optimizacion-y-Prediccion-de-Demanda-del-Transporte-Publico\data\raw\Datos_Abiertos_ARESEP_Estadísticas_rendimiento.csv",encoding="utf-8-sig")
+df_aresep.columns =(
+    df_aresep.columns
+    .str.strip()
+    .map(lambda x: unidecode(x))
+    .str.replace(" ","",regex=True)
+    .str.lower()
+)
+
+df_aresep = df_aresep.rename(columns ={
+    "codigoderuta":"codigoderuta",
+    "descripcionderuta":"descripcionderuta",
+    "mes":"mes",
+    "ano":"annio",
+    "tipodeequipo":"tipodeequipo",
+    "cantidaddeviajes":"cantidadviajes",
+    "cantidaddelocomotoras":"cantidadlocomotoras",
+    "cantidaddevagones":"cantidadvagones",
+    "usomensual(h)":"usomensual",
+    "distanciarecorrida(km)": "distanciarecorrida_km",
+    "consumodecombustible(l)": "consumo_combustible",
+    "cantidaddezapatafreno": "cantidad_zapata_freno",
+    "tipodezapatafreno": "tipo_zapata_freno",
+    "lubricantecarter(l)": "lubricante_carter",
+    "tipodelubricantecarter": "tipo_lubricante_carter",
+    "lubricantecompresor(l)": "lubricante_compresor",
+    "tipodelubricantecompresor": "tipo_lubricante_compresor",
+    "lubricantemotordiesel(l)": "lubricante_motor_diesel",
+    "tipodelubricantemotordiesel": "tipo_lubricante_motor_diesel",
+    "filtroaire": "filtro_aire",
+    "tipodefiltroaire": "tipo_filtro_aire",
+    "filtroprimario": "filtro_primario",
+    "tipodefiltroprimario": "tipo_filtro_primario",
+    "aceitesistemahidraulico": "aceite_sist_hidraulico",
+    "tipodeaceitesistemahidraulico": "tipo_aceite_sist_hidraulico"
+})
+df_aresep['aceite_sist_hidraulico'] = df_aresep['aceite_sist_hidraulico'].fillna(0)
+df_aresep.to_sql("datos_aresep", engine, if_exists='append',index=False)
+df_test4 = pd.read_sql("Select * from datos_aresep",engine)
+print(df_test4)
