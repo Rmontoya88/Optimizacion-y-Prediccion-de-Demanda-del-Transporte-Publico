@@ -35,7 +35,7 @@ class ProcesadorEDA:
 
     def rellenar_nulos(self):
         """Rellena los valores nulos con 0"""
-        self.df = self.df.fillna(0)
+        self.df.fillna(0, inplace=True)
         return self.df
 
     def mostrar_columnas(self):
