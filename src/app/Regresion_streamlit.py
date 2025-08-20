@@ -18,62 +18,64 @@ def mostrar_modelo_regresion():
     """)
 
     st.markdown("1. **Filtramos el dataset** para seleccionar solo las columnas de interés.")
-    mostrar_imagen("poner_nombre_imagen.png")
+    mostrar_imagen("data_filtrado_modeloR.png")
 
     st.markdown("2. **Revisamos el head del dataset** para verificar las primeras filas.")
-    mostrar_imagen("poner_nombre_imagen.png")
-
-    st.markdown("3. **Revisamos la distribución de ingresos por mes** para entender cómo varían a lo largo del tiempo.")
-    mostrar_imagen("distribucion_ingresos_por_mes_regresion.png")
-    st.markdown("### Gráfico")
-    mostrar_imagen("poner_nombre_imagen.png")
-
+    mostrar_imagen("head_dataset_modeloR.png")
 
     st.markdown("## Creación del Modelo de Regresión")
     st.markdown("""
        Una vez preparados los datos, procedimos con los siguientes pasos para crear nuestro modelo de regresión:
        """)
     st.markdown("1. **Creación de las variables X y Y (variable objetivo)**.")
-    mostrar_imagen("poner_nombre_imagen.png")
+    mostrar_imagen("data_filtrado_modeloR.png")
 
-    st.markdown("2. **Escalado de los datos de X** para mejorar el rendimiento del modelo.")
-    mostrar_imagen("poner_nombre_imagen.png")
+    st.markdown("2. Se realiza limpieza de posibles valores Nan y se representa a las variables categoricas como disyuntivas")
+    mostrar_imagen("disy.png")
 
-    st.markdown("3. **Benchmarking**: Comparamos el rendimiento de diferentes modelos de regresión para seleccionar el mejor.")
-    mostrar_imagen("poner_nombre_imagen.png")
+    st.markdown("3. Se realiza la verificación.")
+    mostrar_imagen("verif.png")
 
-    st.markdown("##  La Mejor Opción Fue ")
-    st.markdown("""
-       Después de realizar el benchmarking, encontramos que el **algoritmo** fue el mejor modelo para predecir los XXXX.
-       Los pasos para entrenar y evaluar el modelo fueron los siguientes:
-       """)
-    st.markdown("1. **Entrenamos el modelo XXXX** con el dataset procesado.")
-    mostrar_imagen("poner_nombre_imagen.png")
+    st.markdown("4. Se realiza imputacion usando el promedio.")
+    mostrar_imagen("imputacion.png")
 
-    st.markdown("2. **Evaluamos el modelo** utilizando métricas como XXXX etc.")
-    mostrar_imagen("poner_nombre_imagen.png")
+    st.markdown("5. Se realiza la division de los datos de entrenamiento y prueba.")
+    mostrar_imagen("entrenamiento.png")
 
-    st.markdown("## Probar el Modelo")
-    st.markdown("""
-       A continuación, cargamos el **dataset de prueba** y probamos el modelo entrenado. Los pasos fueron los siguientes:
-       """)
-    st.markdown("1. **Cargamos el dataset de prueba**.")
-    mostrar_imagen("poner_nombre_imagen.png")
+    st.markdown("6. Se indican la cantidad de arboles.")
+    mostrar_imagen("forest.png")
 
-    st.markdown("2. **Verificamos la predicción** comparando las etiquetas predichas con las etiquetas reales.")
-    mostrar_imagen("poner_nombre_imagen.png")
+    st.markdown("7. Se realiza el entrenamiento.")
+    mostrar_imagen("regresion.png")
 
-    st.markdown("3. **Resultados**.")
-    mostrar_imagen("poner_nombre_imagen.png")
+    st.markdown("8. Se obtiene el cross validation de los datos entrenados.")
+    mostrar_imagen("validacionr.png")
 
-    st.markdown("4. **Exportamos el modelo** en formato `XXXX` para usarlo en futuras predicciones.")
-    mostrar_imagen("poner_nombre_imagen.png")
+    st.markdown("9. Se obtiene el score de; desempeño del modelo.")
+    mostrar_imagen("desempeno.png")
+
+    st.markdown("10. Se realiza una predicción.")
+    mostrar_imagen("prediccionR.png")
+
+    st.markdown("11. Coeficiente de determinación.")
+    mostrar_imagen("coedeter.png")
+
+    st.markdown("12. Coeficiente de determinación.")
+    mostrar_imagen("coedeter.png")
+
+    st.markdown("13. Datos separados para la prueba.")
+    mostrar_imagen("x_prueba.png")
+
+    st.markdown("14. Subconjuntos de variable objetivo, se verifica que tan bueno fue el modelo.")
+    mostrar_imagen("y_test.png")
+
+    st.markdown("15. Datos separados para la prueba.")
+    mostrar_imagen("x_prueba.png")
 
     st.markdown("## 🔍 Conclusiones")
     st.markdown("""
-    - XXXX
-    - XXXX
-    - XXXX.
+    Utilizando el modelo RandomForest realizamos un entrenamiento a nuestro modelo y optuvimos un gran resultado para la predicción,
+    un 0.88, siendo un modelo con capacidad de predicción.
     """)
 
 def mostrar_imagen(nombre_archivo, subtitulo=""):
