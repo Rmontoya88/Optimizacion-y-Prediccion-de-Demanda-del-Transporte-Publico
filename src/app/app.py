@@ -10,6 +10,11 @@ from Clasificacion_streamlit import mostrar_modelo_clasificacion
 from Regresion_streamlit import  mostrar_modelo_regresion
 from bd_streamlit import mostrar_base_datos
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..")))
+from src.datos.GestorDatos import GestorDatos
+root_path = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", ".."))
+if root_path not in sys.path:
+    sys.path.append(root_path)
+#from notebooks.EDA import df_mapa_locomotoras
 import pandas as pd
 
 st.set_page_config(
@@ -20,7 +25,8 @@ st.set_page_config(
 )
 
 # Ruta para la imagen
-logo_path = "D:/cuc/programacion 2/Proyecto Final/Optimizacion-y-Prediccion-de-Demanda-del-Transporte-Publico/src/app/imagenes/icon.png"
+logo_path = "C:/Users/Fabiola/Documents/CUC/BigData/Programacion II/Optimizacion-y-Prediccion-de-Demanda-del-Transporte-Publico/src/app/imagenes/icon.png"
+GestorDatos = GestorDatos()
 
 # Mostrar la imagen del logo en el slider
 def display_logo(logo_path):
@@ -89,8 +95,9 @@ elif selected_option == "EDA":
 
 elif selected_option == "Paradas de Servicio":
 
-    ruta_mapa_locomotoras = "D:/cuc/programacion 2/Proyecto Final/Optimizacion-y-Prediccion-de-Demanda-del-Transporte-Publico/data/raw/Paradas_del_servicio_del_tren.csv"
-    df_mapa_locomotoras = pd.read_csv(ruta_mapa_locomotoras, encoding='utf-8')
+    #ruta_mapa_locomotoras = "C:/Users/Fabiola/Documents/CUC/BigData/Programacion II/Optimizacion-y-Prediccion-de-Demanda-del-Transporte-Publico/data/raw/Paradas_del_servicio_del_tren.csv"
+    #df_mapa_locomotoras = pd.read_csv(ruta_mapa_locomotoras, encoding='utf-8')
+    df_mapa_locomotoras = GestorDatos.ObtencionParadas()
     mostrar_paradas_servicio(df_mapa_locomotoras)
 
 elif selected_option == "Modelo Clasificación":

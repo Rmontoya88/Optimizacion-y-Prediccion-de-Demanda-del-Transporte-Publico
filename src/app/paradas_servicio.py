@@ -44,7 +44,7 @@ def mostrar_paradas_servicio(df_mapa_locomotoras):
 
     # Cargar el dataset
     try:
-        df = pd.read_csv('D:/cuc/programacion 2/Proyecto Final/Optimizacion-y-Prediccion-de-Demanda-del-Transporte-Publico/data/raw/Paradas_del_servicio_del_tren.csv')
+        df = pd.read_csv('C:/Users/Fabiola/Documents/CUC/BigData/Programacion II/Optimizacion-y-Prediccion-de-Demanda-del-Transporte-Publico/data/raw/Paradas_del_servicio_del_tren.csv')
         mostrar_mapa(df)
     except Exception as e:
         st.error(f"Error al cargar el archivo CSV: {e}")

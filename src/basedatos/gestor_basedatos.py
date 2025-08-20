@@ -119,8 +119,6 @@ df_pasajeros.columns =df_pasajeros.columns.str.lower()
 df_pasajeros['cantidadadultosmay'] = df_pasajeros['cantidadadultosmay'].fillna(0)
 #print(df_pasajeros.columns)
 df_pasajeros.to_sql("pasajeros_trenurbano", engine, if_exists='append',index=False)
-#Verificar que se insertaran los datos
-df_test = pd.read_sql("Select * from pasajeros_trenurbano",engine)
 
 #Tarifas
 df_tarifas = pd.read_csv(r"C:\Users\Fabiola\Documents\CUC\BigData\Programacion II\Optimizacion-y-Prediccion-de-Demanda-del-Transporte-Publico\data\raw\Tarifas_históricas_de_tren.csv",encoding="utf-8-sig")
@@ -141,7 +139,6 @@ df_tarifas = df_tarifas.rename(columns ={
     "expediente":"expediente"
 })
 df_tarifas.to_sql("tarifas_historicas", engine, if_exists='append',index=False)
-df_test1 = pd.read_sql("Select * from tarifas_historicas",engine)
 
 #Paradas
 df_paradas = pd.read_csv(r"C:\Users\Fabiola\Documents\CUC\BigData\Programacion II\Optimizacion-y-Prediccion-de-Demanda-del-Transporte-Publico\data\raw\Paradas_del_servicio_del_tren.csv",encoding="utf-8-sig")
@@ -187,7 +184,6 @@ df_adult_may = df_adult_may.rename(columns ={
 })
 
 df_adult_may.to_sql("pasajeros_adultos_mayores", engine, if_exists='append',index=False)
-df_test3 = pd.read_sql("Select * from pasajeros_adultos_mayores",engine)
 
 #Datos de ARESEP
 df_aresep = pd.read_csv(r"C:\Users\Fabiola\Documents\CUC\BigData\Programacion II\Optimizacion-y-Prediccion-de-Demanda-del-Transporte-Publico\data\raw\Datos_Abiertos_ARESEP_Estadísticas_rendimiento.csv",encoding="utf-8-sig")
@@ -228,5 +224,3 @@ df_aresep = df_aresep.rename(columns ={
 })
 df_aresep['aceite_sist_hidraulico'] = df_aresep['aceite_sist_hidraulico'].fillna(0)
 df_aresep.to_sql("datos_aresep", engine, if_exists='append',index=False)
-df_test4 = pd.read_sql("Select * from datos_aresep",engine)
-print(df_test4)
