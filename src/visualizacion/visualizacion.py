@@ -1,5 +1,7 @@
 import seaborn as sns
 import matplotlib.pyplot as plt
+import streamlit as st
+
 
 class Visualizador:
     def __init__(self, df):
@@ -18,7 +20,7 @@ class Visualizador:
         plt.xlabel(columna, fontsize=12)
         plt.ylabel('Frecuencia', fontsize=12)
         plt.tight_layout()
-        plt.show()
+        st.pyplot(plt)
 
     def mostrar_grafico_barras(self, columna):
         self._setup_grafico(figsize=(12, 8))
@@ -29,7 +31,8 @@ class Visualizador:
         plt.ylabel('Frecuencia', fontsize=12)
         plt.xticks(rotation=45, ha='right', fontsize=10)  # Rotar etiquetas en x
         plt.tight_layout()
-        plt.show()
+        #plt.show()
+        st.pyplot(plt)
 
 
     def mostrar_scatter(self, columna_x, columna_y):
@@ -40,7 +43,8 @@ class Visualizador:
         plt.xlabel(columna_x, fontsize=12)
         plt.ylabel(columna_y, fontsize=12)
         plt.tight_layout()
-        plt.show()
+        # plt.show()
+        st.pyplot(plt)
 
     def mostrar_barras_horizontal(self, columna):
 
@@ -50,4 +54,5 @@ class Visualizador:
         plt.xlabel('Frecuencia', fontsize=12)
         plt.ylabel(columna, fontsize=12)
         plt.tight_layout()
-        plt.show()
+        # plt.show()
+        st.pyplot(plt)

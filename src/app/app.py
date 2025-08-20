@@ -10,6 +10,8 @@ from Clasificacion_streamlit import mostrar_modelo_clasificacion
 from Regresion_streamlit import  mostrar_modelo_regresion
 from bd_streamlit import mostrar_base_datos
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..")))
+from src.visualizacion.visualizacion import Visualizador
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..")))
 from src.datos.GestorDatos import GestorDatos
 root_path = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", ".."))
 if root_path not in sys.path:
@@ -75,7 +77,7 @@ with st.sidebar:
     selected_option = st.radio(
         "Selecciona una opción:",
         ["Incofer", "Base de Datos", "Dataset", "EDA", "Paradas de Servicio", "Modelo Clasificación",
-         "Modelo Regresión", "Api","Repositorio GIT"]
+         "Modelo Regresión","Graficos", "Api","Repositorio GIT"]
     )
 
 # Mostrar el título
@@ -105,6 +107,14 @@ elif selected_option == "Modelo Clasificación":
 
 elif selected_option == "Modelo Regresión":
     mostrar_modelo_regresion()
+
+elif selected_option == "Graficos":
+    df_tren = GestorDatos.ObtencionPasajerosTrenUrbano()
+    visualizacion = Visualizador(df_tren)
+    visualizacion.mostrar_histograma('cantidadpasajerosreg')
+    visualizacion.mostrar_scatter('cantidadpasajerosreg','cantidadadultosmay')
+    visualizacion.mostrar_grafico_barras('mes')
+    visualizacion.mostrar_grafico_barras('annio')
 
 elif selected_option == "Repositorio GIT":
     st.markdown("""
