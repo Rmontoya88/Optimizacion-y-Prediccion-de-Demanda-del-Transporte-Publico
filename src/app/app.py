@@ -10,6 +10,8 @@ from Clasificacion_streamlit import mostrar_modelo_clasificacion
 from Regresion_streamlit import  mostrar_modelo_regresion
 from bd_streamlit import mostrar_base_datos
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..")))
+from src.api.cliente_API import ClienteAPI
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..")))
 from src.visualizacion.visualizacion import Visualizador
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..")))
 from src.datos.GestorDatos import GestorDatos
@@ -122,6 +124,7 @@ elif selected_option == "Repositorio GIT":
     """)
 else:
     st.markdown("Contenido relacionado con la **Api**")
-
+    cliente = ClienteAPI()
+    cliente.obtenerInformacionLineaPorDistritoMapa()
 
 
