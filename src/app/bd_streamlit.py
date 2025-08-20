@@ -16,19 +16,14 @@ def mostrar_base_datos():
     4. **Carga de la base de datos** en un sistema de gestión de bases de datos PostgreSQL
     """)
 
-    st.markdown("1. **Recolección de los datos** ")
-    st.markdown("Explicacion.")
-    mostrar_imagen("recoleccion_datos.png")
-
-    st.markdown("2. **Limpieza y transformación de los datos** para asegurarse de que estuvieran en un formato adecuado.")
-    st.markdown("Explicacion.")
-    mostrar_imagen("recoleccion_datos.png")
-
+    st.markdown(" **Limpieza y transformación de los datos** para asegurarse de que estuvieran en un formato adecuado.")
+    mostrar_imagen("transformacion_datos.png")
+    mostrar_imagen("transformaciondatos2.png")
+    mostrar_imagen("transformaciondatos3.png")
     st.markdown("## Conclusiones")
-    st.markdown("""
-    - XXXX
-    - XXXX
-    - XXXX
+    st.markdown(""" La limpieza y transformacion de los datos es de suma importancia mas cuando el objetivo principal es realizar anaslisis.
+    Mas cuando son datos tan relevnates como del INCOFER, donde se requiere de la cosistencia de los datos para obtener los resultados
+    deseados
     """)
 
 def mostrar_imagen(nombre_archivo, subtitulo=""):
